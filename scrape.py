@@ -4,6 +4,7 @@ from concurrent.futures import ThreadPoolExecutor, wait
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
+import argparse
 import csv
 import multiprocessing
 import sys
@@ -90,10 +91,14 @@ def split_list(lego_collection, n):
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('collection_file', help='CSV file describing Lego collection')
+    args = parser.parse_args()
+
     lego_collection = []
 
     # Parse Lego collection from Brickset CSV file
-    with open(sys.argv[1], 'r') as csvfile:
+    with open(args.collection_file, 'r') as csvfile:
         reader = csv.DictReader(csvfile)
         for line in reader:
             n = line['Number']
