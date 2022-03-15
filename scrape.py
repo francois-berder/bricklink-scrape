@@ -70,7 +70,7 @@ def print_stats(sets):
     for lego_set in sets:
         rrp = lego_set.rrp if lego_set.rrp else '?'
         price = lego_set.price if lego_set.price else '?'
-        profit = round(lego_set.price - price,
+        profit = round(lego_set.price - lego_set.rrp,
                        2) if lego_set.rrp and lego_set.price else '?'
         data = [lego_set.n, lego_set.name,
                 lego_set.quantity, rrp, price, profit]
